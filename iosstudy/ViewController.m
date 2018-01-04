@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 int tip=0;
-@interface ViewController ()
+@interface ViewController ()<UITextFieldDelegate>
 
 @end
 
@@ -51,7 +51,7 @@ int tip=0;
     [super viewDidLoad];
     NSLog(@"%d viewDidLoad", ++tip);
     
-    // label
+    // UILabel
     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(20, 100, 280, 100)];
     label.text = @"Hello World!It is a good idea, so, what do you want to know?hello, hello, hello";
     
@@ -80,20 +80,44 @@ int tip=0;
     label.lineBreakMode = NSLineBreakByTruncatingTail;
     
     
-    // button
+    // UIButton
     UIButton * button = [UIButton buttonWithType:UIButtonTypeSystem];
-    button.frame = CGRectMake(20, 300, 280, 30);
+    button.frame = CGRectMake(20, 220, 280, 30);
     [button setTitle:@"点我一下" forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:@"image"] forState:UIControlStateNormal];
     [button setTitleEdgeInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
     [button addTarget:self action:@selector(changeColor) forControlEvents:UIControlEventTouchUpInside];
     
+    
+    // UITextField
+    UITextField * textField = [[UITextField alloc] initWithFrame:CGRectMake(20, 270, 280, 30)];
+    textField.borderStyle = UITextBorderStyleRoundedRect;
+    textField.placeholder = @"请输入文字";
+    textField.delegate = self;
+    
     [self.view addSubview:label];
     [self.view addSubview:button];
+    [self.view addSubview:textField];
 }
 
 -(void)changeColor {
     self.view.backgroundColor = [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:arc4random()%255/255.0];
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(nonnull NSString *)string {
+    if (string.length > 0) {
+        if ([string characterAtIndex:0] < '0' || [string characterAtIndex:0] > '9') {
+            NSLog(@"请输入数字");
+            return NO;
+        }
+        if (textField.text.length + string.length > 11) {
+            NSLog(@"超过11位啦！");
+            return NO;
+        }
+        return YES;
+    } else {
+        return NO;
+    }
 }
  
 -(void)viewDidLayoutSubviews {
