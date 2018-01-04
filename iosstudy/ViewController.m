@@ -53,6 +53,25 @@ int tip=0;
     
     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(20, 100, 280, 30)];
     label.text = @"Hello World";
+    
+    // 设置背景颜色
+    label.backgroundColor = [UIColor redColor];
+    
+    // 设置字体和字号
+    label.font = [UIFont systemFontOfSize:23];
+    
+    // 设置字体颜色
+    label.textColor = [UIColor whiteColor];
+    
+    // 设置对齐模式
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    // 设置阴影颜色
+    label.shadowColor = [UIColor greenColor];
+    
+    // 设置阴影的偏移量
+    label.shadowOffset = CGSizeMake(10, 10);
+    
     [self.view addSubview:label];
 }
 
