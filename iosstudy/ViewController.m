@@ -54,28 +54,20 @@ int tip=0;
     // UILabel
     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(20, 100, 280, 100)];
     label.text = @"Hello World!It is a good idea, so, what do you want to know?hello, hello, hello";
-    
     // 设置背景颜色
     label.backgroundColor = [UIColor redColor];
-    
     // 设置字体和字号
     label.font = [UIFont systemFontOfSize:23];
-    
     // 设置字体颜色
     label.textColor = [UIColor whiteColor];
-    
     // 设置对齐模式
     label.textAlignment = NSTextAlignmentCenter;
-    
     // 设置阴影颜色
     label.shadowColor = [UIColor greenColor];
-    
     // 设置阴影的偏移量
     label.shadowOffset = CGSizeMake(1, 1);
-    
     // 设置多行显示
     label.numberOfLines = 0;
-    
     // 设置截断模式
     label.lineBreakMode = NSLineBreakByTruncatingTail;
     
@@ -95,13 +87,30 @@ int tip=0;
     textField.placeholder = @"请输入文字";
     textField.delegate = self;
     
+    
+    // UISwitch
+    UISwitch * swi = [[UISwitch alloc] initWithFrame:CGRectMake(20, 320, 280, 30)];
+    swi.onTintColor = [UIColor greenColor];
+    swi.tintColor = [UIColor redColor];
+    swi.thumbTintColor = [UIColor orangeColor];
+    [swi addTarget:self action:@selector(changeSwi:) forControlEvents:UIControlEventValueChanged];
+    
     [self.view addSubview:label];
     [self.view addSubview:button];
     [self.view addSubview:textField];
+    [self.view addSubview:swi];
 }
 
 -(void)changeColor {
     self.view.backgroundColor = [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:arc4random()%255/255.0];
+}
+
+-(void)changeSwi: (UISwitch *)swi {
+    if (swi.isOn) {
+        self.view.backgroundColor = [UIColor redColor];
+    } else {
+        self.view.backgroundColor = [UIColor whiteColor];
+    }
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(nonnull NSString *)string {
