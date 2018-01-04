@@ -50,6 +50,10 @@ int tip=0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"%d viewDidLoad", ++tip);
+    
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(20, 100, 280, 30)];
+    label.text = @"Hello World";
+    [self.view addSubview:label];
 }
 
 -(void)viewDidLayoutSubviews {
