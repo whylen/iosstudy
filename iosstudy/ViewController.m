@@ -51,8 +51,9 @@ int tip=0;
     [super viewDidLoad];
     NSLog(@"%d viewDidLoad", ++tip);
     
+    // label
     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(20, 100, 280, 100)];
-    label.text = @"Hello World!It is a good idea, so, what do you want to know?hello, hello, hello, hello";
+    label.text = @"Hello World!It is a good idea, so, what do you want to know?hello, hello, hello";
     
     // 设置背景颜色
     label.backgroundColor = [UIColor redColor];
@@ -78,9 +79,23 @@ int tip=0;
     // 设置截断模式
     label.lineBreakMode = NSLineBreakByTruncatingTail;
     
+    
+    // button
+    UIButton * button = [UIButton buttonWithType:UIButtonTypeSystem];
+    button.frame = CGRectMake(20, 300, 280, 30);
+    [button setTitle:@"点我一下" forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"image"] forState:UIControlStateNormal];
+    [button setTitleEdgeInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
+    [button addTarget:self action:@selector(changeColor) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:label];
+    [self.view addSubview:button];
 }
 
+-(void)changeColor {
+    self.view.backgroundColor = [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:arc4random()%255/255.0];
+}
+ 
 -(void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     NSLog(@"%d viewDidLayoutSubviews", ++tip);
