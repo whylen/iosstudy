@@ -51,8 +51,8 @@ int tip=0;
     [super viewDidLoad];
     NSLog(@"%d viewDidLoad", ++tip);
     
-    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(20, 100, 280, 30)];
-    label.text = @"Hello World";
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(20, 100, 280, 100)];
+    label.text = @"Hello World!It is a good idea, so, what do you want to know?hello, hello, hello, hello";
     
     // 设置背景颜色
     label.backgroundColor = [UIColor redColor];
@@ -70,7 +70,13 @@ int tip=0;
     label.shadowColor = [UIColor greenColor];
     
     // 设置阴影的偏移量
-    label.shadowOffset = CGSizeMake(10, 10);
+    label.shadowOffset = CGSizeMake(1, 1);
+    
+    // 设置多行显示
+    label.numberOfLines = 0;
+    
+    // 设置截断模式
+    label.lineBreakMode = NSLineBreakByTruncatingTail;
     
     [self.view addSubview:label];
 }
